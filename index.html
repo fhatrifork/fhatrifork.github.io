@@ -2,17 +2,6 @@
 <html>
 <head>
 <title>FHA cookie test</title>
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-180724753-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-180724753-1');
-</script>
-
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
 </head>
 <body>
@@ -22,7 +11,6 @@ Content updated!!!
 
 
 <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
-
 <script>
   // Define the gtag() API
   window.dataLayer = window.dataLayer || [];
@@ -31,12 +19,21 @@ Content updated!!!
   // Call default commands with static settings to fall back on.
   // Consent commands must appear before gtag.js or Google Tag Manager is loaded
   gtag('consent', 'default', {
-	'ad_storage': 'denied',
-	'analytics_storage': 'denied',
-	'wait_for_update': 500
+	  'ad_storage': 'denied',
+	  'analytics_storage': 'denied',
+	  'wait_for_update': 500
   });
   
-  
+  function updateConsent(status) {
+	if (this.hasConsented()) {
+	  console.log("initial has consented")
+	} else {
+	  console.log("initial no consent")
+	}
+	gtag('consent', 'update', {
+	  'analytics_storage': this.hasConsented() ? 'granted' : 'denied'
+	});
+  }
   
   window.cookieconsent.initialise({
 	"palette": {
@@ -50,26 +47,8 @@ Content updated!!!
 	"theme": "classic",
 	"position": "bottom-right",
 	"type": "opt-in",
-	"onStatusChange": function(status) {
-		if (this.hasConsented()) {
-			console.log("has consented")
-		} else {
-			console.log("no consent")
-		}
-		gtag('consent', 'update', {
-		  'analytics_storage': this.hasConsented() ? 'granted' : 'denied'
-	    });
-	},
-	"onInitialise": function(status) {
-		if (this.hasConsented()) {
-			console.log("initial has consented")
-		} else {
-			console.log("initial no consent")
-		}
-		gtag('consent', 'update', {
-		  'analytics_storage': this.hasConsented() ? 'granted' : 'denied'
-		});
-	},
+	"onStatusChange": updateConsent,
+	"onInitialise": updateConsent
   });
 </script>
 
