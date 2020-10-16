@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Page Title</title>
+<title>FHA cookie test</title>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-180724753-1"></script>
@@ -33,7 +33,11 @@ window.cookieconsent.initialise({
   },
   "theme": "classic",
   "position": "bottom-right",
-  "type": "opt-in"
+  "type": "opt-in",
+  "onStatusChange": function(status) {
+   console.log(this.hasConsented() ?
+	'enable cookies' : 'disable cookies');
+  },
 });
 </script>
 </body>
