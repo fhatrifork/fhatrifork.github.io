@@ -9,7 +9,7 @@
 <h1>Hello</h1>
 Content updated!!!
 
-updates!
+status included!
 
 
 <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
@@ -27,10 +27,11 @@ updates!
   });
   
   function updateConsent(status) {
+		console.log("status" + status);
 	if (this.hasConsented()) {
-	  console.log("initial has consented")
+	  console.log("has consented")
 	} else {
-	  console.log("initial no consent")
+	  console.log("no consent")
 	}
 	gtag('consent', 'update', {
 	  'analytics_storage': this.hasConsented() ? 'granted' : 'denied'
