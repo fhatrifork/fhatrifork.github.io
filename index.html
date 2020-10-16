@@ -7,9 +7,8 @@
 <body>
 
 <h1>Hello</h1>
-Content updated!!!
 
-status included!
+ny included!
 
 
 <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
@@ -27,8 +26,9 @@ status included!
   });
   
   function updateConsent(status) {
+		console.log(cookieconsent.status.allow);
 		console.log("status" + status);
-	if (this.hasConsented()) {
+	if (status == cookieconsent.status.allow) {
 	  console.log("has consented")
 	} else {
 	  console.log("no consent")
