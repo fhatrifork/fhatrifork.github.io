@@ -13,6 +13,10 @@ ny included!
 
 <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
 <script>
+window['ga-disable-UA-180724753-1'] = true;
+
+
+
   // Define the gtag() API
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments)};
@@ -26,13 +30,10 @@ ny included!
   });
   
   function updateConsent(status) {
-		glo += 1;
-		console.log("updated glo");
 		gtag('consent', 'update', {
 		  'analytics_storage': status == cookieconsent.status.allow ? 'granted' : 'denied'
 		});
   }
-  var glo = 0;
   window.cookieconsent.initialise({
 	"palette": {
 	  "popup": {
@@ -49,7 +50,6 @@ ny included!
 	"onStatusChange": updateConsent,
 	"onInitialise": updateConsent
   });
-	console.log(glo);
 </script>
 
 <!-- Load gtag.js as normal -->
