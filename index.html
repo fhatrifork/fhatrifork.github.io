@@ -26,18 +26,13 @@ ny included!
   });
   
   function updateConsent(status) {
-		console.log(cookieconsent.status.allow);
-		console.log("status" + status);
-	if (status == cookieconsent.status.allow) {
-	  console.log("has consented")
-	} else {
-	  console.log("no consent")
-	}
-	gtag('consent', 'update', {
-	  'analytics_storage': this.hasConsented() ? 'granted' : 'denied'
-	});
+		glo += 1;
+		console.log("updated glo");
+		gtag('consent', 'update', {
+		  'analytics_storage': status == cookieconsent.status.allow ? 'granted' : 'denied'
+		});
   }
-  
+  var glo = 0;
   window.cookieconsent.initialise({
 	"palette": {
 	  "popup": {
@@ -53,6 +48,7 @@ ny included!
 	"onStatusChange": updateConsent,
 	"onInitialise": updateConsent
   });
+	console.log(glo);
 </script>
 
 <!-- Load gtag.js as normal -->
