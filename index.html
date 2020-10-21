@@ -13,39 +13,42 @@ update
 
 <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
 <script>
-  // Define the gtag() API
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments)};
-
-  // Call default commands with static settings to fall back on.
-  // Consent commands must appear before gtag.js or Google Tag Manager is loaded
-  gtag('consent', 'default', {
-	  'ad_storage': 'denied',
-	  'analytics_storage': 'denied',
-	  'wait_for_update': 500
-  });
-  
-  function updateConsent(status) {
-		gtag('consent', 'update', {
-		  'analytics_storage': status == cookieconsent.status.allow ? 'granted' : 'denied'
-		});
-  }
-  window.cookieconsent.initialise({
-	"palette": {
-	  "popup": {
-		"background": "#000"
-	  },
-	  "button": {
-		"background": "#f1d600"
+	(function () {
+		// Define the gtag() API
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments)};
+	
+	  // Call default commands with static settings to fall back on.
+	  // Consent commands must appear before gtag.js or Google Tag Manager is loaded
+	  gtag('consent', 'default', {
+		  'ad_storage': 'denied',
+		  'analytics_storage': 'denied',
+		  'wait_for_update': 500
+	  });
+	  
+	  function updateConsent(status) {
+			gtag('consent', 'update', {
+			  'analytics_storage': status == cookieconsent.status.allow ? 'granted' : 'denied'
+			});
 	  }
-	},
-	"theme": "classic",
-	"position": "bottom-right",
-	"type": "opt-in",
-	"revokable": true,
-	"onStatusChange": updateConsent,
-	"onInitialise": updateConsent
-  });
+	  window.cookieconsent.initialise({
+		"palette": {
+		  "popup": {
+			"background": "#000"
+		  },
+		  "button": {
+			"background": "#f1d600"
+		  }
+		},
+		"theme": "classic",
+		"position": "bottom-right",
+		"type": "opt-in",
+		"revokable": true,
+		"onStatusChange": updateConsent,
+		"onInitialise": updateConsent
+	  });
+		
+	})();
 </script>
 
 <!-- Load gtag.js as normal -->
